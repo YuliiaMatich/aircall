@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import Header from './Header.jsx';
+import CallItem from './components/CallItem';
+
 
 const api = axios.create({
   baseURL: "https://charming-bat-singlet.cyclic.app/https://cerulean-marlin-wig.cyclic.app/"
@@ -21,10 +23,22 @@ const [callsHistory, setCallsHistory] = useState(null);
      .then(response => setCallsHistory(response.data))
  }, []);
 
+ 
+
   return (
     <div className='container'>
       <Header/>
-      <div className="container-view">Some activities should be here</div>
+      <div className="container-view">
+        {!callsHistory ? "Loading..." : callsHistory.map(call => <CallItem
+        key={call.id}
+        type={call.call_type}
+        direction={call.direction}
+        from={call.from}
+        to={call.to}
+        date={call.created_at} 
+        />)}
+        
+      </div>
     </div>
   );
 };
