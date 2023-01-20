@@ -3,7 +3,9 @@ import "./CallItem.css";
 
 const CallItem = (props) => {
   let imgPath;
-  if (props.direction === "inbound") {
+  if (props.type === "missed") {
+    imgPath = "/docs/images/missed.png";
+  } else if (props.direction === "inbound") {
     imgPath = "/docs/images/inbound.png";
   } else {
     imgPath = "/docs/images/outbound.png";

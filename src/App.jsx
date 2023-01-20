@@ -2,10 +2,10 @@ import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Header from "./Header.jsx";
-import CallItem from "./components/CallItem";
 import Footer from "./components/Footer.js";
+import CallsList from "./components/CallsList.js";
 
 const api = axios.create({
   baseURL:
@@ -20,26 +20,25 @@ const App = () => {
   }, []);
 
   return (
+    <BrowserRouter>
     <div className="container">
       <div className="group-header-and-callitem">
       <Header />
       <div className="container-view">
         {!callsHistory
           ? "Loading..."
-          : callsHistory.map((call) => (
-              <CallItem
-                key={call.id}
-                type={call.call_type}
-                direction={call.direction}
-                from={call.from}
-                to={call.to}
-                date={call.created_at}
-              />
-            ))}
+          : 
+          <Routes>
+            <Route path="/" element={<CallsList callsHistory={callsHistory}/>}/>
+            <Route path="/archived" element={<CallsList callsHistory={callsHistory.filter(call => call.is_archived === true)}/>}/>
+            <Route path="/missed" element={<CallsList callsHistory={callsHistory.filter(call => call.call_type === "missed")}/>}/>
+          </Routes>
+          }
             </div>    
       </div>
       <Footer /> 
     </div>
+    </BrowserRouter>
   );
 };
 
