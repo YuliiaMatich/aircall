@@ -34,7 +34,7 @@ const {id} = useParams();
           ? "Loading..."
           : 
           <Routes>
-            <Route path="/" element={<CallsList setCallInfo={setCallInfo} callsHistory={callsHistory}/>}/>
+            <Route path="/" element={<CallsList setCallInfo={setCallInfo} callsHistory={callsHistory.filter(call => call.from)}/>}/>
             <Route path="/archived" element={<CallsList setCallInfo={setCallInfo} callsHistory={callsHistory.filter(call => call.is_archived === true)}/>}/>
             <Route path="/missed" element={<CallsList setCallInfo={setCallInfo} callsHistory={callsHistory.filter(call => call.call_type === "missed")}/>}/>
             <Route path="/calls/:id" element={<CallDetails callInfo={callInfo} id={id}/>}/>
