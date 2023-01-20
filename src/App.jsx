@@ -2,10 +2,13 @@ import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, BrowserRouter,useParams } from 'react-router-dom';
 import Header from "./Header.jsx";
 import Footer from "./components/Footer.js";
 import CallsList from "./components/CallsList.js";
+import CallDetails from "./components/CallDetails.js";
+
+
 
 const api = axios.create({
   baseURL:
@@ -14,6 +17,8 @@ const api = axios.create({
 
 const App = () => {
   const [callsHistory, setCallsHistory] = useState(null);
+  const [callInfo, setCallInfo] = useState(null);
+const {id} = useParams();
 
   useEffect(() => {
     api.get("/activities").then((response) => setCallsHistory(response.data));
@@ -29,9 +34,10 @@ const App = () => {
           ? "Loading..."
           : 
           <Routes>
-            <Route path="/" element={<CallsList callsHistory={callsHistory}/>}/>
-            <Route path="/archived" element={<CallsList callsHistory={callsHistory.filter(call => call.is_archived === true)}/>}/>
-            <Route path="/missed" element={<CallsList callsHistory={callsHistory.filter(call => call.call_type === "missed")}/>}/>
+            <Route path="/" element={<CallsList setCallInfo={setCallInfo} callsHistory={callsHistory}/>}/>
+            <Route path="/archived" element={<CallsList setCallInfo={setCallInfo} callsHistory={callsHistory.filter(call => call.is_archived === true)}/>}/>
+            <Route path="/missed" element={<CallsList setCallInfo={setCallInfo} callsHistory={callsHistory.filter(call => call.call_type === "missed")}/>}/>
+            <Route path="/calls/:id" element={<CallDetails callInfo={callInfo} id={id}/>}/>
           </Routes>
           }
             </div>    

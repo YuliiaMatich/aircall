@@ -1,37 +1,36 @@
 import React from "react";
-import "./CallItem.css";
+import "./CallDetails.css";
 
-const CallItem = (props) => {
+const CallDetails = ({callInfo}) => {
   let imgPath;
-  if (props.type === "missed") {
+  if (callInfo.call_type === "missed") {
     imgPath = "/docs/images/missed.png";
-  } else if (props.direction === "inbound") {
+  } else if (callInfo.direction === "inbound") {
     imgPath = "/docs/images/inbound.png";
   } else {
     imgPath = "/docs/images/outbound.png";
   }
-  let ts = new Date(props.date);
+  let ts = new Date(callInfo.created_at);
   let callTime = ts.toLocaleDateString("en-US", {
-    // hour: "2-digit",
-    // minute: "2-digit",
-    year: 'numeric', month: 'short', day: 'numeric'
+    year: 'numeric', month: 'short', day: 'numeric', hour: "2-digit",
+    minute: "2-digit"
   });
   return (
-    <div onClick={props.onClick} className="call-container">
+    <div className="call-container-details">
       <div className="icon-and-phone-numbers">
         <div className="phone-icon">
           <img className="phone-img" src={imgPath}></img>
         </div>
         <div className="phone-numbers-detail">
           <div className="incoming-phone-number">
-            <p>{props.from}</p>
+            <p>{callInfo.from}</p>
           </div>
-          <p>tried to call on {props.to}</p>
+          <p>tried to call on {callInfo.to}</p>
         </div>
       </div>
       <p>{callTime}</p>
     </div>
   );
-};
+}
 
-export default CallItem;
+export default CallDetails;

@@ -1,4 +1,4 @@
-.call-container {
+.call-container-details {
   box-shadow: 2px 2px 2px 2px lightgrey;
   border-radius: 10px;
   display: flex;
@@ -8,12 +8,7 @@
   align-items: center;
   margin-bottom: 10px;
   background: white;
-  height: 40px;
-}
-
-.call-container:hover {
-  box-shadow: 4px 4px 4px 4px lightgrey;
-  cursor: pointer;
+  height: 300px;
 }
 
 .phone-img {
@@ -31,6 +26,3 @@
   font-weight: bold;
   margin-bottom: -8px;
 }
-
-
-
