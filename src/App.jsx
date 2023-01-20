@@ -21,6 +21,7 @@ const App = () => {
 
   return (
     <div className="container">
+      <div className="group-header-and-callitem">
       <Header />
       <div className="container-view">
         {!callsHistory
@@ -35,7 +36,7 @@ const App = () => {
                 date={call.created_at}
               />
             ))}
-           
+            </div>    
       </div>
       <Footer /> 
     </div>
