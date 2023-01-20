@@ -4,11 +4,11 @@ import "./CallItem.css";
 const CallItem = (props) => {
   let imgPath;
   if (props.type === "missed") {
-    imgPath = "/docs/images/missed.png";
+    imgPath = "https://github.com/YuliiaMatich/aircall/blob/master/docs/images/missed.png?raw=true";
   } else if (props.direction === "inbound") {
-    imgPath = "/docs/images/inbound.png";
+    imgPath = "https://github.com/YuliiaMatich/aircall/blob/master/docs/images/inbound.png?raw=true";
   } else {
-    imgPath = "/docs/images/outbound.png";
+    imgPath = "https://github.com/YuliiaMatich/aircall/blob/master/docs/images/outbound.png?raw=true";
   }
   let ts = new Date(props.date);
   let callTime = ts.toLocaleDateString("en-US", {

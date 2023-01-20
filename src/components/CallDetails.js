@@ -31,7 +31,7 @@ const CallDetails = ({ callInfo }) => {
   return (
     <div className="call-container-details">
       <div className="image-and-phone-number-group">
-        <img className="caller-img" src="/docs/images/user1.png"></img>
+        <img className="caller-img" src="https://github.com/YuliiaMatich/aircall/blob/master/docs/images/user1.png?raw=true"></img>
         <div className="phone-numbers-detail">
           <p className="call-info-from">{callInfo.from}</p>
           <p>tried to call on {callInfo.to}</p>
